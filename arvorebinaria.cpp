@@ -32,6 +32,41 @@ using namespace std;
 
     }
     void ArvoreBinariadeBusca::inserir(Livro livro){
+        if(estacheio()){
+            cout << "Não há espaço para inserir esse livro";
+        } else{
+            No* NoNovo = new No;
+            NoNovo-> livro;
+            NoNovo->filhodireita=NULL;
+            NoNovo->filhoesquerda=NULL;
+            if (raiz == NULL)
+            {
+                raiz = NoNovo
+            }else{
+                No* temp = raiz;
+                while (temp != NULL)
+                {
+                    if (livro.obterId() < temp->livro.obterId()){
+                        if(temp->filhoesquerda == NULL){
+                            temp->filhoesquerda = NoNovo;
+                            break;
+                        }else{
+                            temp = temp->filhoesquerda;
+                        }
+                    }else{
+                        if(temp->filhodireita == NULL){
+                            temp->filhodireita = NoNovo;
+                            break;
+                        } else{
+                            temp = temp->filhodireita;
+                        }
+
+                    }
+                }
+                
+            }
+            
+        }
 
     }
     void ArvoreBinariadeBusca::remover(Livro livro){
