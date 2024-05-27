@@ -39,9 +39,8 @@ using namespace std;
             NoNovo-> livro;
             NoNovo->filhodireita=NULL;
             NoNovo->filhoesquerda=NULL;
-            if (raiz == NULL)
-            {
-                raiz = NoNovo
+            if(raiz == NULL){   
+                raiz = NoNovo;
             }else{
                 No* temp = raiz;
                 while (temp != NULL)
@@ -73,7 +72,21 @@ using namespace std;
 
     }
     void ArvoreBinariadeBusca::buscar(Livro& livro, bool& busca){
-
+        busca = false;
+        No* noatual = raiz;
+        while (noatual != NULL){
+            if(livro.obterId() < noatual->livro.obterId()){
+                noatual = noatual->filhoesquerda;
+            }else if(livro.obterId() >noatual->livro.obterId()){
+                noatual = noatual->filhodireita;
+            }else{
+                busca = true;
+                livro = noatual->livro;
+                break;
+            }
+    
+        }
+        
     }
     void ArvoreBinariadeBusca::desenhaarvore(No* Noatual){
 
