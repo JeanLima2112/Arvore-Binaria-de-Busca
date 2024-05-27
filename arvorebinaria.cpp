@@ -69,7 +69,38 @@ using namespace std;
 
     }
     void ArvoreBinariadeBusca::remover(Livro livro){
-
+        removerbusca(livro,raiz);
+    }
+    void ArvoreBinariadeBusca::removerbusca(Livro livro,No*& noatual){
+        if(livro.obterId()<noatual->livro.obterId()){
+            removerbusca(livro, noatual->filhoesquerda);
+        }else if(livro.obterId()>noatual->livro.obterId()){
+            removerbusca(livro, noatual->filhodireita);
+        }else{
+            deletarNo(noatual);
+        }
+    }
+    void ArvoreBinariadeBusca::deletarNo(No*& noatual){
+        No* temp = noatual;
+        if(noatual->filhoesquerda == NULL){
+            noatual = noatual->filhodireita;
+            delete temp;
+        } else if(noatual->filhodireita == NULL) {
+            noatual = noatual->filhoesquerda;
+            delete temp;
+        }else{
+            Livro LivroSucessor;
+            obterSucessor(LivroSucessor,noatual);
+            noatual-> livro = LivroSucessor;
+            removerbusca(LivroSucessor,noatual->filhodireita);
+        }
+    }
+    void ArvoreBinariadeBusca::obterSucessor(Livro& Livrosucessor,No* temp){
+        temp = temp->filhodireita;
+        while(temp -> filhoesquerda != NULL){
+            temp = temp ->filhoesquerda;
+        }
+        Livrosucessor =temp->livro;
     }
     void ArvoreBinariadeBusca::buscar(Livro& livro, bool& busca){
         busca = false;
@@ -82,7 +113,7 @@ using namespace std;
             }else{
                 busca = true;
                 livro = noatual->livro;
-                break;
+                break; 
             }
     
         }
