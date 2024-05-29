@@ -1,0 +1,1 @@
+g++ main_arvore.cpp arvorebinaria.cpp livro.cpp -o Arvoreapp.exe

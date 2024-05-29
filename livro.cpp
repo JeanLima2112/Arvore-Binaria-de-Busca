@@ -5,8 +5,8 @@ using namespace std;
         id = -1;
         titulo = " ";
     }
-    Livro::Livro(int id,std::string t){
-        id = id;
+    Livro::Livro(int i,std::string t){
+        id = i;
         titulo = t;
 
     }

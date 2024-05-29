@@ -1,10 +1,13 @@
 #include <iostream>
 #include <cstddef>
 #include "arvorebinaria.h"
+#include <list>
 
 
 using namespace std;
-
+    list<int> vet(63);
+    list <int>::iterator it;
+    
     ArvoreBinariadeBusca::ArvoreBinariadeBusca(){ // contrutora
         raiz = NULL;
     }
@@ -40,7 +43,7 @@ using namespace std;
             cout << "Não há espaço para inserir esse livro";
         } else{
             No* NoNovo = new No;
-            NoNovo-> livro;
+            NoNovo-> livro = livro;
             NoNovo->filhodireita=NULL;
             NoNovo->filhoesquerda=NULL;
             if(raiz == NULL){   
@@ -123,16 +126,12 @@ using namespace std;
         }
         
     }
-    void ArvoreBinariadeBusca::desenhaarvore(No* Noatual){
-
-    }
     void ArvoreBinariadeBusca::Imprimirpreordem(No* Noatual){
         if(Noatual!=NULL){
             cout << Noatual->livro.obterTitulo()<<":";
             cout << Noatual->livro.obterId() << endl;
-
-            Imprimirpreordem(Noatual->filhoesquerda);
-            Imprimirpreordem(Noatual->filhodireita);
+            Imprimiremordem(Noatual->filhoesquerda);
+            Imprimiremordem(Noatual->filhodireita); 
         }
     }
     void ArvoreBinariadeBusca::Imprimiremordem(No* Noatual){
@@ -150,4 +149,19 @@ using namespace std;
             cout << Noatual->livro.obterTitulo()<<":";
             cout << Noatual->livro.obterId() << endl;
         }
+    }
+    void ArvoreBinariadeBusca::desenharArvore(No* Noatual,int c){
+            it =vet.begin();
+            if (Noatual != NULL){
+                advance(it,c-1);
+                vet.insert(it,Noatual->livro.obterId());
+                c = c*2;
+                desenharArvore(Noatual->filhoesquerda,c);
+                c= c+1;
+                desenharArvore(Noatual->filhodireita,c);
+                for(int cnt=0;cnt<63;cnt++){
+                    cout << vet.front()<<"|";
+                    vet.pop_front();
+                }
+            }
     }
