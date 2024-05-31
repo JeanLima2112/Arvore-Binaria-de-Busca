@@ -26,6 +26,4 @@ void buscar(Livro& livro, bool& busca);
 void Imprimirpreordem(No* Noatual);
 void Imprimiremordem(No* Noatual);
 void Imprimirposordem(No* Noatual);
-void desenharArvore(No* Noatual,int c);
-
 };

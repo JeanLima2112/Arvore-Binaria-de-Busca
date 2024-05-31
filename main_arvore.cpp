@@ -1,6 +1,5 @@
 #include <iostream>
 #include "arvorebinaria.h"
-
 using namespace std;
 
 int main(){
@@ -8,23 +7,23 @@ int main(){
     int opcao, id, imp;
     string titulo;
     bool busca = false;
-    int mtx [63];
-
+    cout<< "\xCD\xCD\xCD BiBlioteca Mais Livros\xCD\xCD\xCD";
     do{
-        cout << "Digite 0 para parar o algoritmo!\n";
-        cout << "Digite 1 para inserir um elemento!\n";
-        cout << "Digite 2 para remover um elemento!\n";
-        cout << "Digite 3 para buscar um elemento!\n";
-        cout << "Digite 4 para imprimir a arvore!\n";
-        cout << "Digite 5 para testar\n";
+        
+        cout << "\n\n[0] para parar o algoritmo!\n";
+        cout << "[1] para inserir um Livro no inventario!\n";
+        cout << "[2] para remover um livro do inventario!\n";
+        cout << "[3] para buscar um livro\n";
+        cout << "[4] para imprimir a arvore!\n";
+        cout << "Sua Escolha:";
         cin >> opcao;
 
         if (opcao == 1){
-            /*cout << "Digite o nome do aluno:\n";
-            cin >> titulo;*/
-            cout << "Digite o RA do aluno:\n";
+            cout << "Digite o Titulo do Livro(Separe os espacos com _):";
+            cin >> titulo;
+            cout << "Digite o Codigo do livro:";
             cin >> id;
-            Livro livro(id, "teste");
+            Livro livro(id,titulo);
         if (Arvorelivros.estacheio()){
             cout << "A Árvore esta cheia!\n";
             cout << "Nao foi possivel inserir o elemento!\n";
@@ -32,26 +31,36 @@ int main(){
             Arvorelivros.inserir(livro);
         }
         } else if (opcao == 2){
-            cout << "Digite o RA do aluno a ser removido!\n";
-            cin >> id;
-            Livro livro(id, " ");
-            Arvorelivros.remover(livro);
-        } else if (opcao == 3){
-            cout << "Digite o RA do aluno a ser buscado!\n";
+            cout << "Digite o COD do livro a ser removido!\n";
             cin >> id;
             Livro livro(id, " ");
             Arvorelivros.buscar(livro, busca);
             if (busca){
-                cout << "Elemento encontrado!\n";
-                cout << "Nome: " << livro.obterTitulo() << endl;
-                cout << "RA: " << livro.obterId() << endl;
+                Arvorelivros.remover(livro);
+                cout << "Livro Removido!\n";
+            }else{
+                cout << "Livro nao encontrado!\n";
+            }
+        } else if (opcao == 3){
+            cout << "Digite o COD do livro a ser buscado!\n";
+            cin >> id;
+            Livro livro(id, " ");
+            Arvorelivros.buscar(livro, busca);
+            if (busca){
+                cout << "Livro encontrado!\n";
+                cout<<"\xCD\xCD\xCD\xCD\xCD\xCD\n";
+                cout << "Titulo: " << livro.obterTitulo() << endl;
+                cout << "COD: " << livro.obterId() << endl;
+                cout<<"\xCD\xCD\xCD\xCD\xCD\xCD\n\n";
             } else{
-                cout << "Elemento nao encontrado!\n";
+                cout << "Livro nao encontrado!\n";
             }           
         } else if (opcao == 4){
-            cout << "Digite 1 para fazer a impressao em pre ordem!\n";
-            cout << "Digite 2 para fazer a impressao em ordem!\n";
-            cout << "Digite 3 para fazer a impressao em pos ordem!\n";
+            cout<<"\n\xCD\xCD\xCD Imprimir a Arvore \xCD\xCD\xCD\n\n";
+            cout << "[1] para fazer a impressao em pre ordem!\n";
+            cout << "[2] para fazer a impressao em ordem!\n";
+            cout << "[3] para fazer a impressao em pos ordem!\n";
+            cout << "Sua Escolha:";
             cin >> imp;
             if (imp == 1){
                 Arvorelivros.Imprimirpreordem(Arvorelivros.obterRaiz());
@@ -60,11 +69,7 @@ int main(){
             } else{
                 Arvorelivros.Imprimirposordem(Arvorelivros.obterRaiz());
             }                   
-        }else if (opcao==5)
-        {
-            Arvorelivros.desenharArvore(Arvorelivros.obterRaiz(),1);
         }
-        
     } while (opcao != 0);
 
     return 0;
